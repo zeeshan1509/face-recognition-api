@@ -11,8 +11,11 @@ const image = require('./Controllers/image');
 const db = knex({
   client: 'pg',
   connection: {
-    connectionString : process.env.DATABASE_URL,
-    ssl: true,
+  	  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+
   }
 });
 
@@ -31,7 +34,7 @@ app.get('/', (req, res) => {
 
 app.post('/signin', signin.handleSignin(db, bcrypt))
 
-app.post('/register',(req, res) => {register.handleRegister(req, res, db, bcrypt) })
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt)})
 
 app.get('/profile/:id',(req, res) => {profile.handleProfile(req, res, db)})
  
@@ -43,6 +46,8 @@ app.post('/imageurl',(req, res) => {image.handleApiCall(req,res,db)})
 
 
 
-app.listen(process.env.PORT || 3000,()=>{
+app.listen(process.env.PORT ||3000, ()=>{
 	console.log(`app is running port ${process.env.PORT}`)
 })
+
+
