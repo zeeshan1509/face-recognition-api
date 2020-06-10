@@ -19,12 +19,11 @@ const db = knex({
   }
 });
 
-
-
 const app= express();
 
 app.use(express.json());
- app.use(cors());
+
+app.use(cors());
 
 
 app.get('/', (req, res) => {
@@ -42,7 +41,7 @@ app.put('/image',(req, res) => {image.handleImage(req,res,db)})
 
 app.post('/imageurl',(req, res) => {image.handleApiCall(req,res,db)})
 
-// Load hash from your password DB.
+
 
 
 
