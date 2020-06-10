@@ -27,7 +27,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-	res.send(database.user);
+	res.send('all working');
 })
 
 
@@ -48,5 +48,3 @@ app.post('/imageurl',(req, res) => {image.handleApiCall(req,res,db)})
 app.listen(3000,()=>{
 	console.log('app is running port 3000')
 })
-
-
